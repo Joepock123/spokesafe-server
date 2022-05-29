@@ -2,6 +2,7 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const pool = new Pool({
   connectionString: process.env.PG_DATABASE_URI,
@@ -41,6 +42,7 @@ const updateUser = async (userId, balance) =>
 const express = require("express");
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get("/users/:userId", async (req, res) => {
   let user;
